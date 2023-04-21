@@ -1,15 +1,16 @@
+import "./style/style.css";
 import Gameboard from "./modules/Gameboard";
+import Player from "./modules/Player";
+import fillPlayersGameboard from "./modules/DOM";
 
-const gameboard = Gameboard();
+const playerGameboard = Gameboard();
+const computerGameboard = Gameboard();
 
-gameboard.placeShip([0, 0], 2, 3);
-gameboard.placeShip([5, 3], 1, 1);
+playerGameboard.fillBoardRandomly([5, 4, 3, 3, 2, 2]);
+computerGameboard.fillBoardRandomly([5, 4, 3, 3, 2, 2]);
 
-gameboard.receiveAttack([0, 0]);
-gameboard.receiveAttack([0, 1]);
-gameboard.receiveAttack([0, 2]);
-gameboard.receiveAttack([5, 3]);
+const player = Player(playerGameboard, computerGameboard);
+const computer = Player(computerGameboard, playerGameboard);
 
-gameboard.printArray();
+fillPlayersGameboard(playerGameboard, computerGameboard, player, computer);
 
-console.log(gameboard.isAllSunk());

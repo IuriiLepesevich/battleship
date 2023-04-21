@@ -1,0 +1,60 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-holder {
+  display: flex;
+  margin: auto;
+  gap: 50px;
+}
+
+.board {
+  border: 1px solid black;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.cell {
+  border: 1px solid black;
+}
+
+.cell.miss {
+  background-color: rgb(179, 179, 179);
+}
+
+#player .cell.ship {
+  border: 3px solid red;
+}
+
+.cell.ship.hit {
+  background-color: blue;
+}
+
+.cell.ship.hit.dead {
+  background-color: red;
+}

@@ -154,9 +154,20 @@ export default function Gameboard() {
     });
   }
 
+  function updateGameboardArray() {
+    missedAttacks.forEach((missedCoordinate) => {
+      gameboardArray[missedCoordinate[0]][missedCoordinate[1]] = -1;
+    });
+  }
+
   function receiveAttack(coordinates) {
-    if (gameboardArray[coordinates[0]][coordinates[1]].hits?.()) return false;
-    return missedAttacks[missedAttacks.push(coordinates) - 1];
+    if (gameboardArray[coordinates[0]][coordinates[1]].hits?.()) {
+      return false;
+    }
+    if(gameboardArray[coordinates[0]][coordinates[1]] === -1) return true
+    missedAttacks.push(coordinates);
+    updateGameboardArray();
+    return coordinates;
   }
 
   const getMissedAttack = () => missedAttacks;
@@ -189,9 +200,9 @@ export default function Gameboard() {
     getGameboardArray,
     fillBoardRandomly,
     placeShip,
-    printArray,
     receiveAttack,
     getMissedAttack,
     isAllSunk,
+    printArray,
   };
 }
